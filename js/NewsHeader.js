@@ -1,9 +1,12 @@
-var React = require('react');
-var $ = require('jquery');
-var _ = require('lodash');
+import React, { Component } from 'react';
+const _ = require('lodash');
 
-var NewsHeader = React.createClass({
-  getNav: function() {
+class NewsHeader extends Component {
+  constructor() {
+    super()
+  }
+
+  getNav () {
     var navLinks = [
       {
         name: 'new',
@@ -42,29 +45,33 @@ var NewsHeader = React.createClass({
         }).value()}
       </div>
     );
-  },
-  getLogo: function() {
+  }
+
+  getLogo () {
     return (
       <div className="newsHeader__logo">
         <a href="https://news.ycombinator.com/"><img src="../img/y18.gif" /></a>
       </div>
     );
-  },
-  getTitle: function() {
+  }
+
+  getTitle () {
     return (
       <div className="newsHeader__title">
         <a className="newsHeader__textLink" href="https://news.ycombinator.com/news">Hacker News</a>
       </div>
     );
-  },
-  getLogin: function() {
+  }
+
+  getLogin () {
     return (
       <div className="newsHeader__login">
         <a className="newsHeader__textLink" href="https://news.ycombinator.com/login?goto=news">login</a>
       </div>
     );
-  },
-  render: function() {
+  }
+
+  render () {
     return (
       <div className="newsHeader">
         {this.getLogo()}
@@ -74,6 +81,6 @@ var NewsHeader = React.createClass({
       </div>
     )
   }
-});
+};
 
-module.exports = NewsHeader;
+export default NewsHeader;

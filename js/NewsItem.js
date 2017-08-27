@@ -1,13 +1,19 @@
-var $ = require('jquery');
-var React = require('react');
-var url = require('url');
-var moment = require('moment');
+import React, { Component } from 'react';
+const url = require('url');
+const moment = require('moment');
 
-var NewsItem = React.createClass({
-  getDomain: function() {
-    return url.parse(this.props.item.url).hostname;
-  },
-  getCommentLink: function() {
+class NewsItem extends Component {
+  constructor() {
+    super()
+  }
+
+  getDomain () {
+    // return url.parse(this.props.item.url).hostname;
+    console.log(typeof this.props.item.url)
+    return this.props.item.url;
+  }
+
+  getCommentLink () {
     var commentText = 'discuss';
     if (this.props.item.kids && this.props.item.kids.length > 0) {
       commentText = this.props.item.kids.length + ' comments';
@@ -17,30 +23,34 @@ var NewsItem = React.createClass({
         {commentText}
       </a>
     )
-  },
-  getSubtext: function() {
+  }
+
+  getSubtext () {
     return (
       <div className="newsItem__subtext">
         {this.props.item.score} points by <a href={'https://news.ycombinator.com/user?id=' + this.props.item.by}>{this.props.item.by}</a> {moment.utc(this.props.item.time * 1000).fromNow()}  | {this.getCommentLink()}
       </div>
     )
-  },
-  getTitle: function() {
+  }
+
+  getTitle () {
     return (
       <div className="newsItem__title">
         <a className="newsItem__titleLink" href={this.props.item.url}>{this.props.item.title}</a>
         <a className="newsItem__domain" href={'https://news.ycombinator.com/from?=' + this.getDomain()}>({this.getDomain()})</a>
       </div>
     )
-  },
-  getRank: function() {
+  }
+
+  getRank () {
     return (
       <div className="newsItem__rank">
         {this.props.rank}
       </div>
     )
-  },
-  getVote: function() {
+  }
+
+  getVote () {
     return (
       <div className="newsItem__vote">
         <a href={'https://news.ycombinator.com/vote?id=' + this.props.item.id + 'how=up&goto=news'}>
@@ -48,8 +58,9 @@ var NewsItem = React.createClass({
         </a>
       </div>
     )
-  },
-  render: function () {
+  }
+
+  render  () {
     return (
       <div className="newsItem">
         {this.getRank()}
@@ -61,6 +72,6 @@ var NewsItem = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = NewsItem;
+export default NewsItem;

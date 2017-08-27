@@ -1,17 +1,22 @@
-var React = require('react');
-var NewsHeader = require('./NewsHeader');
-var NewsItem = require('./NewsItem');
-var _ = require('lodash');
+import React, { Component } from 'react';
+import NewsHeader from './NewsHeader';
+import NewsItem from './NewsItem';
+const _ = require('lodash');
 
-var NewsList = React.createClass({
-  getMore: function() {
+class NewsList extends Component {
+  constructor() {
+    super()
+  }
+
+  getMore () {
     return (
       <div className="newsList__more">
         <a href="https://news.ycombinator.com/news?p=2" className="newsList__moreLink">More</a>
       </div>
     );
-  },
-  render: function() {
+  }
+
+  render () {
     return (
       <div className="newsList">
         <NewsHeader />
@@ -24,6 +29,6 @@ var NewsList = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = NewsList;
+export default NewsList;
